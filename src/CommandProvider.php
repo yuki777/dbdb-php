@@ -8,6 +8,16 @@ class CommandProvider implements CommandProviderCapability
 {
     public function getCommands()
     {
-        return [new Commands\Mysql];
+        return [
+            new Commands\DbdbList,
+            new Commands\MysqlCreate,
+            new Commands\MysqlStart,
+            new Commands\MysqlStop,
+            new Commands\MysqlRestart,
+            new Commands\MysqlCreateStart,
+            new Commands\MysqlPort,
+            new Commands\MysqlStatus,
+            new Commands\MysqlDelete,
+        ];
     }
 }
