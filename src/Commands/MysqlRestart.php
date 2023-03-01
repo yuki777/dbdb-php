@@ -5,9 +5,8 @@ namespace DbdbPhp\Composer\Commands;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Composer\Command\BaseCommand;
 
-class MysqlRestart extends BaseCommand
+class MysqlRestart extends MysqlBase
 {
     const SERVICE = 'mysql';
     const COMMAND = 'restart';
@@ -25,21 +24,17 @@ class MysqlRestart extends BaseCommand
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $name = $input->getArgument('name');
-        $scriptResponse = $this->exec($name);
+        $file = self::SCRIPT_PATH;
+        $command = "$file $name";
+        $scriptResponse = $this->exec($command);
 
         if ($scriptResponse['code'] === 0) {
-            $output->writeln(ucfirst(self::SERVICE) . ' ' . self::COMMAND . " command was successfully executed.");
+            $output->writeln(ucfirst(self::COMMAND) . ' ' . self::SERVICE . " command was successfully executed.");
+            $output->writeln($scriptResponse['response']);
             return 0;
         }
 
+        $output->writeln($scriptResponse['response']);
         return 1;
-    }
-
-    private function exec(string $name)
-    {
-        $file = self::SCRIPT_PATH;
-        $command = "$file $name";
-
-        return shell_exec($command);
     }
 }

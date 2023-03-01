@@ -5,9 +5,8 @@ namespace DbdbPhp\Composer\Commands;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Composer\Command\BaseCommand;
 
-class MysqlCreateStart extends BaseCommand
+class MysqlCreateStart extends MysqlBase
 {
     const SERVICE = 'mysql';
     const COMMAND = 'create-start';
@@ -30,26 +29,17 @@ class MysqlCreateStart extends BaseCommand
         $version = $input->getArgument('version');
         $port = $input->getArgument('port');
 
-        $scriptResponse = $this->exec($name, $version, $port);
+        $file = self::SCRIPT_PATH;
+        $command = "$file $name $version $port";
+        $scriptResponse = $this->exec($command);
 
         if ($scriptResponse['code'] === 0) {
-            $output->writeln(ucfirst(self::SERVICE) . ' ' . self::COMMAND . " command was successfully executed. $name $version $port");
+            $output->writeln(ucfirst(self::COMMAND) . ' ' . self::SERVICE . " command was successfully executed. $name $version $port");
+            $output->writeln($scriptResponse['response']);
             return 0;
         }
 
+        $output->writeln($scriptResponse['response']);
         return 1;
-    }
-
-    private function exec(string $name, string $version, string $port)
-    {
-        $file = self::SCRIPT_PATH;
-        $command = "$file $name $version $port";
-        exec($command, $response, $code);
-
-        return [
-            'command' => $command,
-            'response' => $response,
-            'code' => $code,
-        ];
     }
 }
