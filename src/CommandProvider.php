@@ -16,7 +16,6 @@ class CommandProvider implements CommandProviderCapability
             new Commands\MysqlRestart,
             new Commands\MysqlCreateStart,
             new Commands\MysqlPort,
-            new Commands\MysqlStatus,
             new Commands\MysqlDelete,
         ];
     }

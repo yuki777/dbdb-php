@@ -4,9 +4,8 @@ namespace DbdbPhp\Composer\Commands;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Composer\Command\BaseCommand;
 
-class DbdbList extends BaseCommand
+class DbdbList extends MysqlBase
 {
     const SCRIPT_PATH = __DIR__ . '/../../dbdb/dbdb.sh';
 
@@ -19,28 +18,16 @@ class DbdbList extends BaseCommand
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $scriptResponse = $this->exec();
+        $file = self::SCRIPT_PATH;
+        $command = "$file -f json";
+        $scriptResponse = $this->exec($command);
 
         if ($scriptResponse['code'] === 0) {
-            $text = implode('', $scriptResponse['response']);
-            $output->writeln($text);
+            $output->writeln($scriptResponse['response']);
             return 0;
         }
 
+        $output->writeln($scriptResponse['response']);
         return 1;
-    }
-
-    private function exec()
-    {
-        $file = self::SCRIPT_PATH;
-        $command = "$file -f json";
-
-        exec($command, $response, $code);
-
-        return [
-            'command' => $command,
-            'response' => $response,
-            'code' => $code,
-        ];
     }
 }
