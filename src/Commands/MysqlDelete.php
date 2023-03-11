@@ -15,8 +15,7 @@ class MysqlDelete extends MysqlBase
     protected function configure(): void
     {
         $this->setName('dbdb:' . self::SERVICE . '-' . self::COMMAND);
-        $this->setDescription('description.........');
-        $this->setHelp('help..........');
+        $this->setDescription('Delete a ' . self::SERVICE . ' database');
 
         $this->addArgument('name', InputArgument::REQUIRED, 'name, The required parameter');
     }

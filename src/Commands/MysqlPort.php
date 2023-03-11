@@ -15,8 +15,7 @@ class MysqlPort extends MysqlBase
     protected function configure(): void
     {
         $this->setName('dbdb:' . self::SERVICE . '-' . self::COMMAND);
-        $this->setDescription('description.........');
-        $this->setHelp('help..........');
+        $this->setDescription('Displays the ' . self::SERVICE . " database's port");
 
         $this->addArgument('name', InputArgument::REQUIRED, 'name, The required parameter');
     }

@@ -15,8 +15,7 @@ class MysqlStart extends MysqlBase
     protected function configure(): void
     {
         $this->setName('dbdb:' . self::SERVICE . '-' . self::COMMAND);
-        $this->setDescription('description.........');
-        $this->setHelp('help..........');
+        $this->setDescription('Start a ' . self::SERVICE . ' database');
 
         $this->addArgument('name', InputArgument::REQUIRED, 'name, The required parameter');
     }

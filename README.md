@@ -1,5 +1,7 @@
 # dbdb-php
 
+dbdb-php is a plugin for composer that allows you to manage databases with [dbdb](https://github.com/yuki777/dbdb).
+
 ## Install
 
 ```bash
