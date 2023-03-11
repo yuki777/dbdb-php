@@ -14,5 +14,6 @@
     },
     "extra":{
         "class":"DbdbPhp\\Composer\\Plugin"
-    }
+    },
+    "license": "MIT"
 }
