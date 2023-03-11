@@ -15,12 +15,15 @@ class MysqlCreateStart extends MysqlBase
     protected function configure(): void
     {
         $this->setName('dbdb:' . self::SERVICE . '-' . self::COMMAND);
-        $this->setDescription('description.........');
-        $this->setHelp('help..........');
+        $this->setDescription('Try to create the database, then start the database');
+
+        $this->addUsage('dbdb:' . self::SERVICE . '-' . self::COMMAND . ' my-awesome-mysql5 5.7.31 3306');
+        $this->addUsage('dbdb:' . self::SERVICE . '-' . self::COMMAND . ' my-awesome-mysql8 8.0.30 13306');
+        $this->addUsage('dbdb:' . self::SERVICE . '-' . self::COMMAND . ' mysql-random-port 8.0.30 random');
 
         $this->addArgument('name', InputArgument::REQUIRED, 'name, The required parameter');
         $this->addArgument('version', InputArgument::REQUIRED, 'version, The required parameter');
-        $this->addArgument('port', InputArgument::REQUIRED, 'port, The required parameter');
+        $this->addArgument('port', InputArgument::REQUIRED, 'port, The required parameter. If you want to use a random port, use "random"');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

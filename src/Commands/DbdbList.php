@@ -12,8 +12,9 @@ class DbdbList extends MysqlBase
     protected function configure(): void
     {
         $this->setName('dbdb:list');
-        $this->setDescription('description.........');
-        $this->setHelp('help..........');
+        $this->setDescription('Displays all databases managed by dbdb-php in this directory');
+
+        $this->addUsage('dbdb:list | jq');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
