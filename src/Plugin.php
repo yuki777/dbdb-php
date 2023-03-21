@@ -4,9 +4,9 @@ namespace DbdbPhp\Composer;
 
 use Composer\Composer;
 use Composer\IO\IOInterface;
-use Composer\Plugin\PluginInterface;
 use Composer\Plugin\Capability\CommandProvider as CmdProvider;
 use Composer\Plugin\Capable;
+use Composer\Plugin\PluginInterface;
 
 class Plugin implements PluginInterface, Capable
 {

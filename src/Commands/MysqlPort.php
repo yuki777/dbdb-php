@@ -9,13 +9,15 @@ use Symfony\Component\Console\Output\OutputInterface;
 class MysqlPort extends MysqlBase
 {
     const SERVICE = 'mysql';
+
     const COMMAND = 'port';
-    const SCRIPT_PATH = __DIR__ . '/../../dbdb/' . self::SERVICE . '/' . self::COMMAND . '.sh';
+
+    const SCRIPT_PATH = __DIR__.'/../../dbdb/'.self::SERVICE.'/'.self::COMMAND.'.sh';
 
     protected function configure(): void
     {
-        $this->setName('dbdb:' . self::SERVICE . '-' . self::COMMAND);
-        $this->setDescription('Displays the ' . self::SERVICE . " database's port");
+        $this->setName('dbdb:'.self::SERVICE.'-'.self::COMMAND);
+        $this->setDescription('Displays the '.self::SERVICE." database's port");
 
         $this->addArgument('name', InputArgument::REQUIRED, 'name, The required parameter');
     }
@@ -28,12 +30,14 @@ class MysqlPort extends MysqlBase
         $scriptResponse = $this->exec($command);
 
         if ($scriptResponse['code'] === 0) {
-            $output->writeln(ucfirst(self::COMMAND) . ' ' . self::SERVICE . " command was successfully executed.");
+            $output->writeln(ucfirst(self::COMMAND).' '.self::SERVICE.' command was successfully executed.');
             $output->writeln($scriptResponse['response']);
+
             return 0;
         }
 
         $output->writeln($scriptResponse['response']);
+
         return 1;
     }
 }
