@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<ruleset name="dbdb-php"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vendor-bin/tools/vendor/squizlabs/php_codesniffer/phpcs.xsd">
+    <description>dbdb-php Coding Standard</description>
+    <arg name="basepath" value="."/>
+    <arg name="extensions" value="php"/>
+    <arg name="parallel" value="80"/>
+    <arg name="cache" value=".phpcs-cache"/>
+    <arg name="colors"/>
+
+    <!-- PHP version -->
+    <config name="php_version" value="81000"/>
+
+    <!-- Ignore warnings, show progress of the run and show sniff names -->
+    <arg value="nps"/>
+
+    <!-- Directories to be checked -->
+    <file>src</file>
+    <file>tests</file>
+    <exclude-pattern>*/tests/tmp/*</exclude-pattern>
+
+    <!-- PSR12 Coding Standard -->
+    <rule ref="PSR12"/>
+</ruleset>
