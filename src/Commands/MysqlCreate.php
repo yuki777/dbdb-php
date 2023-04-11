@@ -12,16 +12,16 @@ class MysqlCreate extends MysqlBase
 
     const COMMAND = 'create';
 
-    const SCRIPT_PATH = __DIR__.'/../../dbdb/'.self::SERVICE.'/'.self::COMMAND.'.sh';
+    const SCRIPT_PATH = __DIR__ . '/../../dbdb/' . self::SERVICE . '/' . self::COMMAND . '.sh';
 
     protected function configure(): void
     {
-        $this->setName('dbdb:'.self::SERVICE.'-'.self::COMMAND);
-        $this->setDescription('Creates a new '.self::SERVICE.' database');
+        $this->setName('dbdb:' . self::SERVICE . '-' . self::COMMAND);
+        $this->setDescription('Creates a new ' . self::SERVICE . ' database');
 
-        $this->addUsage('dbdb:'.self::SERVICE.'-'.self::COMMAND.' my-awesome-mysql5 5.7.31 3306');
-        $this->addUsage('dbdb:'.self::SERVICE.'-'.self::COMMAND.' my-awesome-mysql8 8.0.30 13306');
-        $this->addUsage('dbdb:'.self::SERVICE.'-'.self::COMMAND.' mysql-random-port 8.0.30 random');
+        $this->addUsage('dbdb:' . self::SERVICE . '-' . self::COMMAND . ' my-awesome-mysql5 5.7.31 3306');
+        $this->addUsage('dbdb:' . self::SERVICE . '-' . self::COMMAND . ' my-awesome-mysql8 8.0.30 13306');
+        $this->addUsage('dbdb:' . self::SERVICE . '-' . self::COMMAND . ' mysql-random-port 8.0.30 random');
 
         $this->addArgument('name', InputArgument::REQUIRED, 'name, The required parameter');
         $this->addArgument('version', InputArgument::REQUIRED, 'version, The required parameter');
@@ -39,7 +39,7 @@ class MysqlCreate extends MysqlBase
         $scriptResponse = $this->exec($command);
 
         if ($scriptResponse['code'] === 0) {
-            $output->writeln(ucfirst(self::COMMAND).' '.self::SERVICE." command was successfully executed. $name $version $port");
+            $output->writeln(ucfirst(self::COMMAND) . ' ' . self::SERVICE . " command was successfully executed. $name $version $port");
             $output->writeln($scriptResponse['response']);
 
             return 0;

@@ -12,12 +12,12 @@ class MysqlDelete extends MysqlBase
 
     const COMMAND = 'delete';
 
-    const SCRIPT_PATH = __DIR__.'/../../dbdb/'.self::SERVICE.'/'.self::COMMAND.'.sh';
+    const SCRIPT_PATH = __DIR__ . '/../../dbdb/' . self::SERVICE . '/' . self::COMMAND . '.sh';
 
     protected function configure(): void
     {
-        $this->setName('dbdb:'.self::SERVICE.'-'.self::COMMAND);
-        $this->setDescription('Delete a '.self::SERVICE.' database');
+        $this->setName('dbdb:' . self::SERVICE . '-' . self::COMMAND);
+        $this->setDescription('Delete a ' . self::SERVICE . ' database');
 
         $this->addArgument('name', InputArgument::REQUIRED, 'name, The required parameter');
     }
@@ -26,11 +26,10 @@ class MysqlDelete extends MysqlBase
     {
         $name = $input->getArgument('name');
         $file = self::SCRIPT_PATH;
-        $command = "$file $name";
+        $command = "$file -f json $name";
         $scriptResponse = $this->exec($command);
 
         if ($scriptResponse['code'] === 0) {
-            $output->writeln(ucfirst(self::COMMAND).' '.self::SERVICE.' command was successfully executed.');
             $output->writeln($scriptResponse['response']);
 
             return 0;

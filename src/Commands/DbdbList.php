@@ -7,7 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class DbdbList extends MysqlBase
 {
-    const SCRIPT_PATH = __DIR__.'/../../dbdb/dbdb.sh';
+    const SCRIPT_PATH = __DIR__ . '/../../dbdb/dbdb.sh';
 
     protected function configure(): void
     {
