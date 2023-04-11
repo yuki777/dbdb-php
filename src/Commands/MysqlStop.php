@@ -17,7 +17,7 @@ class MysqlStop extends MysqlBase
     protected function configure(): void
     {
         $this->setName('dbdb:' . self::SERVICE . '-' . self::COMMAND);
-        $this->setDescription('Stop a ' . self::SERVICE . ' database');
+        $this->setDescription('Stop ' . self::SERVICE . ' database');
 
         $this->addArgument('name', InputArgument::REQUIRED, 'name, The required parameter');
     }

@@ -17,7 +17,7 @@ class MysqlRestart extends MysqlBase
     protected function configure(): void
     {
         $this->setName('dbdb:' . self::SERVICE . '-' . self::COMMAND);
-        $this->setDescription('Restart a ' . self::SERVICE . ' database');
+        $this->setDescription('Restart ' . self::SERVICE . ' database');
 
         $this->addArgument('name', InputArgument::REQUIRED, 'name, The required parameter');
     }

@@ -17,7 +17,7 @@ class MysqlCreateStart extends MysqlBase
     protected function configure(): void
     {
         $this->setName('dbdb:' . self::SERVICE . '-' . self::COMMAND);
-        $this->setDescription('Try to create the database, then start the database');
+        $this->setDescription('Create database, then start database');
 
         $this->addUsage('dbdb:' . self::SERVICE . '-' . self::COMMAND . ' my-awesome-mysql5 5.7.31 3306');
         $this->addUsage('dbdb:' . self::SERVICE . '-' . self::COMMAND . ' my-awesome-mysql8 8.0.30 13306');
