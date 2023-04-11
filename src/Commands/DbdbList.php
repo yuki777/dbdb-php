@@ -7,12 +7,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class DbdbList extends MysqlBase
 {
-    const SCRIPT_PATH = __DIR__.'/../../dbdb/dbdb.sh';
+    const SCRIPT_PATH = __DIR__ . '/../../dbdb/dbdb.sh';
 
     protected function configure(): void
     {
         $this->setName('dbdb:list');
-        $this->setDescription('Displays all databases managed by dbdb-php in this directory');
+        $this->setDescription('Displays all databases managed by dbdb-php');
 
         $this->addUsage('dbdb:list | jq');
     }
@@ -24,7 +24,7 @@ class DbdbList extends MysqlBase
         $scriptResponse = $this->exec($command);
 
         if ($scriptResponse['code'] === 0) {
-            $output->writeln($scriptResponse['response']);
+            $output->writeln(json_encode(json_decode($scriptResponse['response'], true), JSON_PRETTY_PRINT));
 
             return 0;
         }
