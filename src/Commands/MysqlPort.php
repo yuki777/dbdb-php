@@ -26,11 +26,10 @@ class MysqlPort extends MysqlBase
     {
         $name = $input->getArgument('name');
         $file = self::SCRIPT_PATH;
-        $command = "$file $name";
+        $command = "$file -f json $name";
         $scriptResponse = $this->exec($command);
 
         if ($scriptResponse['code'] === 0) {
-            $output->writeln(ucfirst(self::COMMAND) . ' ' . self::SERVICE . ' command was successfully executed.');
             $output->writeln($scriptResponse['response']);
 
             return 0;

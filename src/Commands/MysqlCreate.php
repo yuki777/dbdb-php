@@ -35,11 +35,10 @@ class MysqlCreate extends MysqlBase
         $port = $input->getArgument('port');
 
         $file = self::SCRIPT_PATH;
-        $command = "$file $name $version $port";
+        $command = "$file -f json $name $version $port";
         $scriptResponse = $this->exec($command);
 
         if ($scriptResponse['code'] === 0) {
-            $output->writeln(ucfirst(self::COMMAND) . ' ' . self::SERVICE . " command was successfully executed. $name $version $port");
             $output->writeln($scriptResponse['response']);
 
             return 0;
