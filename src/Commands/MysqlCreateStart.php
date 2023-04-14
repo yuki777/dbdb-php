@@ -39,7 +39,7 @@ class MysqlCreateStart extends MysqlBase
         $scriptResponse = $this->exec($command);
 
         if ($scriptResponse['code'] === 0) {
-            $output->writeln(json_encode(json_decode($scriptResponse['response'], true), JSON_PRETTY_PRINT));
+            $output->writeln(json_encode($scriptResponse['response'], JSON_PRETTY_PRINT));
 
             return 0;
         }
