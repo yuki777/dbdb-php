@@ -12,7 +12,7 @@ class MysqlBase extends BaseCommand
 
         return [
             'command' => $command,
-            'response' => implode("\n", $response),
+            'response' => json_decode(implode("\n", $response), true),
             'code' => $code,
         ];
     }
