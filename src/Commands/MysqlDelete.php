@@ -30,7 +30,7 @@ class MysqlDelete extends MysqlBase
         $scriptResponse = $this->exec($command);
 
         if ($scriptResponse['code'] === 0) {
-            $output->writeln(json_encode($scriptResponse['response'], JSON_PRETTY_PRINT));
+            $output->writeln($scriptResponse['response']);
 
             return 0;
         }
