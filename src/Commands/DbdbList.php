@@ -22,9 +22,10 @@ class DbdbList extends MysqlBase
         $file = self::SCRIPT_PATH;
         $command = "$file -f json";
         $scriptResponse = $this->exec($command);
+        $scriptResponse['response'] = $this->convertResponse($scriptResponse['response']);
 
         if ($scriptResponse['code'] === 0) {
-            $output->writeln($scriptResponse['response']);
+            $output->writeln(json_encode($scriptResponse['response'], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
             return 0;
         }
@@ -32,5 +33,27 @@ class DbdbList extends MysqlBase
         $output->writeln($scriptResponse['response']);
 
         return 1;
+    }
+
+    // Return only name, type, version, port, status, dataDir, confPath
+    private function convertResponse(array $response)
+    {
+        if (! $response) {
+            return [];
+        }
+
+        $dbList = [];
+        foreach ($response as $db) {
+            $item = [];
+            $item['name'] = $db['name'];
+            $item['type'] = $db['type'];
+            $item['version'] = $db['version'];
+            $item['port'] = $db['port'];
+            $item['status'] = $db['status'];
+            $item['dataDir'] = $db['dataDir'];
+            $item['confPath'] = $db['confPath'];
+            $dbList[] = $item;
+        }
+        return $dbList;
     }
 }
