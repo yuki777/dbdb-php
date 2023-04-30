@@ -30,7 +30,7 @@ class MysqlStart extends MysqlBase
         $scriptResponse = $this->exec($command);
 
         if ($scriptResponse['code'] === 0) {
-            $output->writeln($scriptResponse['response']);
+            $output->writeln(json_encode($scriptResponse['response'], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
             return 0;
         }
