@@ -33,7 +33,7 @@ class DbdbVersion extends MysqlBase
         $packageName = self::PACKAGE;
 
         if (InstalledVersions::isInstalled($packageName)) {
-            return InstalledVersions::getVersion($packageName);
+            return InstalledVersions::getPrettyVersion($packageName);
         }
 
         return null;
