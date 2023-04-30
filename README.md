@@ -48,3 +48,6 @@ composer dbdb:list
 
 - 5.7.31
 - 8.0.30
+
+## Example
+- [Here is an example](https://github.com/yuki777/dbdb-php-laravel/blob/e89801211e5dcf29c0d4afb25e428e11b1d92d38/.github/workflows/test.yaml#L23-L25) of Laravel using a MySQL database without a MySQL container in CI (GitHub Actions).
