@@ -11,7 +11,8 @@ jobs:
         test: [
           tests/MongodbTest.php,
           tests/MysqlTest.php,
-          tests/PostgresqlTest.php,
+          tests/Postgresql12Test.php,
+          tests/Postgresql13Test.php,
           tests/RedisTest.php
         ]
     steps:
