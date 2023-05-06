@@ -3,51 +3,22 @@ name: Test
 on: push
 
 jobs:
-
-  test-macos:
+  test:
     runs-on: ${{ matrix.os }}
     strategy:
-      max-parallel: 4
       matrix:
-        os: [macos-latest]
+        os: [macos-latest, ubuntu-latest]
+        test: [
+          tests/MongodbTest.php,
+          tests/MysqlTest.php,
+          tests/PostgresqlTest.php,
+          tests/RedisTest.php
+        ]
     steps:
       - uses: actions/checkout@v3
       - name: Composer install
         run: |
           composer install
-      - name: Test mongodb
+      - name: Run tests
         run: |
-          ./vendor/bin/phpunit tests/MongodbTest.php
-      - name: Test mysql
-        run: |
-          ./vendor/bin/phpunit tests/MysqlTest.php
-      - name: Test postgresql
-        run: |
-          ./vendor/bin/phpunit tests/PostgresqlTest.php
-      - name: Test redis
-        run: |
-          ./vendor/bin/phpunit tests/RedisTest.php
-
-  test-ubuntu:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      max-parallel: 4
-      matrix:
-        os: [ubuntu-latest]
-    steps:
-      - uses: actions/checkout@v3
-      - name: Composer install
-        run: |
-          composer install
-      - name: Test mongodb
-        run: |
-          ./vendor/bin/phpunit tests/MongodbTest.php
-      - name: Test mysql
-        run: |
-          ./vendor/bin/phpunit tests/MysqlTest.php
-      - name: Test postgresql
-        run: |
-          ./vendor/bin/phpunit tests/PostgresqlTest.php
-      - name: Test redis
-        run: |
-          ./vendor/bin/phpunit tests/RedisTest.php
+          ./vendor/bin/phpunit ${{ matrix.test }}
