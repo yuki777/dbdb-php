@@ -12,11 +12,11 @@
     },
     "autoload":{
         "psr-4":{
-            "DbdbPhp\\Composer\\":"src/"
+            "DbDbPhp\\Composer\\":"src/"
         }
     },
     "extra":{
-        "class":"DbdbPhp\\Composer\\Plugin"
+        "class":"DbDbPhp\\Composer\\Plugin"
     },
     "license": "MIT",
     "config": {

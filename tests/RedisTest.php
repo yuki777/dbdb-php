@@ -5,19 +5,19 @@ namespace DbDbPhp\Composer;
 use PHPUnit\Framework\TestCase;
 use Composer\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
-use DbDbPhp\Composer\Commands\Mysql;
+use DbDbPhp\Composer\Commands\Redis;
 
-class MysqlTest extends TestCase
+class RedisTest extends TestCase
 {
     public function testBasic()
     {
-        $type = 'mysql';
-        $oldVersion = '5.7.31';
-        $newVersion = '8.0.30';
+        $type = 'redis';
+        $oldVersion = '6.0.16';
+        $newVersion = '6.2.6';
 
         $application = new Application();
         $application->setAutoExit(false);
-        $application->add(new Mysql());
+        $application->add(new Redis());
         $commandTester = new CommandTester($application->find("dbdb:$type"));
 
         // Generate random name

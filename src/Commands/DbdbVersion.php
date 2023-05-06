@@ -1,12 +1,12 @@
 <?php
 
-namespace DbdbPhp\Composer\Commands;
+namespace DbDbPhp\Composer\Commands;
 
 use Composer\InstalledVersions;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class DbdbVersion extends MysqlBase
+class DbDbVersion extends MysqlBase
 {
     const PACKAGE = 'yuki777/dbdb-php';
     protected function configure(): void
