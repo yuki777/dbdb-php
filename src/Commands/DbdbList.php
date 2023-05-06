@@ -5,7 +5,7 @@ namespace DbDbPhp\Composer\Commands;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class DbDbList extends MysqlBase
+class DbDbList extends DbDbBase
 {
     const SCRIPT_PATH = __DIR__ . '/../../dbdb/dbdb.sh';
 

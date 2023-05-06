@@ -6,7 +6,7 @@ use Composer\InstalledVersions;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class DbDbVersion extends MysqlBase
+class DbDbVersion extends DbDbBase
 {
     const PACKAGE = 'yuki777/dbdb-php';
     protected function configure(): void
