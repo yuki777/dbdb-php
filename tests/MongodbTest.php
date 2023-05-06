@@ -5,19 +5,19 @@ namespace DbDbPhp\Composer;
 use PHPUnit\Framework\TestCase;
 use Composer\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
-use DbDbPhp\Composer\Commands\Mysql;
+use DbDbPhp\Composer\Commands\Mongodb;
 
-class MysqlTest extends TestCase
+class MongodbTest extends TestCase
 {
     public function testBasic()
     {
-        $type = 'mysql';
-        $oldVersion = '5.7.31';
-        $newVersion = '8.0.30';
+        $type = 'mongodb';
+        $oldVersion = '4.4.10';
+        $newVersion = '5.0.3';
 
         $application = new Application();
         $application->setAutoExit(false);
-        $application->add(new Mysql());
+        $application->add(new Mongodb());
         $commandTester = new CommandTester($application->find("dbdb:$type"));
 
         // Generate random name

@@ -1,10 +1,10 @@
 <?php
 
-namespace DbdbPhp\Composer\Commands;
+namespace DbDbPhp\Composer\Commands;
 
 use Composer\Command\BaseCommand;
 
-class MysqlBase extends BaseCommand
+class DbDbBase extends BaseCommand
 {
     protected function exec(string $command)
     {

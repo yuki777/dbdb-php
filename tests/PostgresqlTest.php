@@ -5,19 +5,19 @@ namespace DbDbPhp\Composer;
 use PHPUnit\Framework\TestCase;
 use Composer\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
-use DbDbPhp\Composer\Commands\Mysql;
+use DbDbPhp\Composer\Commands\Postgresql;
 
-class MysqlTest extends TestCase
+class PostgresqlTest extends TestCase
 {
     public function testBasic()
     {
-        $type = 'mysql';
-        $oldVersion = '5.7.31';
-        $newVersion = '8.0.30';
+        $type = 'postgresql';
+        // $oldVersion = '12.4'; // Run only one version of the test because of slow execution in CI
+        $newVersion = '13.2';
 
         $application = new Application();
         $application->setAutoExit(false);
-        $application->add(new Mysql());
+        $application->add(new Postgresql());
         $commandTester = new CommandTester($application->find("dbdb:$type"));
 
         // Generate random name
@@ -25,7 +25,7 @@ class MysqlTest extends TestCase
 
         // Create
         fwrite(STDERR, "Create database $dbName" . PHP_EOL);
-        $this->assertEquals(0, $commandTester->execute(["action" => "create", "--db-name" => $dbName, "--db-version" => $oldVersion, "--db-port" => "random"]));
+        $this->assertEquals(0, $commandTester->execute(["action" => "create", "--db-name" => $dbName, "--db-version" => $newVersion, "--db-port" => "random"]));
 
         // Start
         fwrite(STDERR, "Start database $dbName" . PHP_EOL);

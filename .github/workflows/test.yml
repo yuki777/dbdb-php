@@ -3,31 +3,22 @@ name: Test
 on: push
 
 jobs:
-
-  test-macos:
+  test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest]
+        os: [macos-latest, ubuntu-latest]
+        test: [
+          tests/MongodbTest.php,
+          tests/MysqlTest.php,
+          tests/PostgresqlTest.php,
+          tests/RedisTest.php
+        ]
     steps:
       - uses: actions/checkout@v3
       - name: Composer install
         run: |
           composer install
-      - name: PHPUnit
+      - name: Run tests
         run: |
-          ./vendor/bin/phpunit
-
-  test-ubuntu:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-    steps:
-      - uses: actions/checkout@v3
-      - name: Composer install
-        run: |
-          composer install
-      - name: PHPUnit
-        run: |
-          ./vendor/bin/phpunit
+          ./vendor/bin/phpunit ${{ matrix.test }}

@@ -1,6 +1,6 @@
 <?php
 
-namespace DbdbPhp\Composer;
+namespace DbDbPhp\Composer;
 
 use Composer\Composer;
 use Composer\IO\IOInterface;
