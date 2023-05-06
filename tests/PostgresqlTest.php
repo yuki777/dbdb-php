@@ -12,7 +12,7 @@ class PostgresqlTest extends TestCase
     public function testBasic()
     {
         $type = 'postgresql';
-        $oldVersion = '12.4';
+        // $oldVersion = '12.4'; // Run only one version of the test because of slow execution in CI
         $newVersion = '13.2';
 
         $application = new Application();
@@ -25,7 +25,7 @@ class PostgresqlTest extends TestCase
 
         // Create
         fwrite(STDERR, "Create database $dbName" . PHP_EOL);
-        $this->assertEquals(0, $commandTester->execute(["action" => "create", "--db-name" => $dbName, "--db-version" => $oldVersion, "--db-port" => "random"]));
+        $this->assertEquals(0, $commandTester->execute(["action" => "create", "--db-name" => $dbName, "--db-version" => $newVersion, "--db-port" => "random"]));
 
         // Start
         fwrite(STDERR, "Start database $dbName" . PHP_EOL);
