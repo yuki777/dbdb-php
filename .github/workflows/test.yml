@@ -14,9 +14,18 @@ jobs:
       - name: Composer install
         run: |
           composer install
-      - name: PHPUnit
+      - name: Test mongodb
         run: |
-          ./vendor/bin/phpunit
+          ./vendor/bin/phpunit tests/MongodbTest.php
+      - name: Test mysql
+        run: |
+          ./vendor/bin/phpunit tests/MysqlTest.php
+      - name: Test postgresql
+        run: |
+          ./vendor/bin/phpunit tests/PostgresqlTest.php
+      - name: Test redis
+        run: |
+          ./vendor/bin/phpunit tests/RedisTest.php
 
   test-ubuntu:
     runs-on: ${{ matrix.os }}
@@ -28,6 +37,15 @@ jobs:
       - name: Composer install
         run: |
           composer install
-      - name: PHPUnit
+      - name: Test mongodb
         run: |
-          ./vendor/bin/phpunit
+          ./vendor/bin/phpunit tests/MongodbTest.php
+      - name: Test mysql
+        run: |
+          ./vendor/bin/phpunit tests/MysqlTest.php
+      - name: Test postgresql
+        run: |
+          ./vendor/bin/phpunit tests/PostgresqlTest.php
+      - name: Test redis
+        run: |
+          ./vendor/bin/phpunit tests/RedisTest.php
