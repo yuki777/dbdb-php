@@ -17,37 +17,47 @@ composer require --dev yuki777/dbdb-php
 
 ```bash
 # Create database with version 5.7.31 and port 3306
-composer dbdb:mysql-create my-awesome-db 5.7.31 3306
+composer dbdb:mysql create --db-name=my-awesome-db5 --db-version=5.7.31 --db-port=3306
 
 # Start database
-composer dbdb:mysql-start my-awesome-db
+composer dbdb:mysql start --db-name=my-awesome-db5
 
 # Stop database
-composer dbdb:mysql-stop my-awesome-db
+composer dbdb:mysql stop --db-name=my-awesome-db5
 
 # Restart database
-composer dbdb:mysql-restart my-awesome-db
+composer dbdb:mysql restart --db-name=my-awesome-db5
 
 # Delete database
-composer dbdb:mysql-delete my-awesome-db
+composer dbdb:mysql delete --db-name=my-awesome-db5
 
-# Create database, then start database
-composer dbdb:mysql-create-start my-awesome-db 5.7.31 3306
+# Create and start database
+composer dbdb:mysql create-start --db-name=my-awesome-db5 --db-version=5.7.31 --db-port=3306
 
 # Create database with version 8.0.30 and random port
-composer dbdb:mysql-create my-awesome-db 8.0.30 random
+composer dbdb:mysql create --db-name=my-awesome-db8 --db-version=8.0.30 --db-port=random
 
 # Show port
-composer dbdb:mysql-port my-awesome-db
+composer dbdb:mysql-port my-awesome-db8
 
 # Show databases
 composer dbdb:list
 ```
 
-## Supported MySQL versions
-
-- 5.7.31
-- 8.0.30
+## Supported databases and versions
+- MySQL
+  - 5.7.31
+  - 8.0.30
+- Redis
+  - 6.0.16
+  - 6.2.6
+- Postgresql
+  - 12.4
+  - 12.6
+  - 13.2
+- Mongodb
+  - 4.4.10
+  - 5.0.3
 
 ## Example
-- [Here is an example](https://github.com/yuki777/dbdb-php-laravel/blob/e89801211e5dcf29c0d4afb25e428e11b1d92d38/.github/workflows/test.yaml#L23-L25) of Laravel using a MySQL database without a MySQL container in CI (GitHub Actions).
+- [Here is an example](https://github.com/yuki777/dbdb-php-laravel) of Laravel using a MySQL database without a MySQL container in CI (GitHub Actions).
