@@ -11,7 +11,9 @@ class CommandProvider implements CommandProviderCapability
         return [
             new Commands\DbDbVersion(),
             new Commands\DbDbList(),
+            new Commands\Mongodb(),
             new Commands\Mysql(),
+            new Commands\Postgresql(),
             new Commands\Redis(),
         ];
     }
