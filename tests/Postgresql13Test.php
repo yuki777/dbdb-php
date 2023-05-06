@@ -9,13 +9,12 @@ use DbDbPhp\Composer\Commands\Postgresql;
 use DbDbPhp\Composer\Commands\DbDbList;
 use DbDbPhp\Composer\Commands\DbDbVersion;
 
-class PostgresqlTest extends TestCase
+class Postgresql13Test extends TestCase
 {
     public function testBasic()
     {
         $type = 'postgresql';
-        // $oldVersion = '12.4'; // Run only one version of the test because of slow execution in CI
-        $newVersion = '13.2';
+        $version = '13.2';
 
         $application = new Application();
         $application->add(new Postgresql());
@@ -43,7 +42,7 @@ class PostgresqlTest extends TestCase
 
         // Create
         fwrite(STDERR, "Create database $dbName" . PHP_EOL);
-        $this->assertEquals(0, $dbTester->execute(["action" => "create", "--db-name" => $dbName, "--db-version" => $newVersion, "--db-port" => "random"]));
+        $this->assertEquals(0, $dbTester->execute(["action" => "create", "--db-name" => $dbName, "--db-version" => $version, "--db-port" => "random"]));
 
         // Start
         fwrite(STDERR, "Start database $dbName" . PHP_EOL);
@@ -67,7 +66,7 @@ class PostgresqlTest extends TestCase
 
         // Create and start
         fwrite(STDERR, "Create and start database $dbName" . PHP_EOL);
-        $this->assertEquals(0, $dbTester->execute(["action" => "create-start", "--db-name" => $dbName, "--db-version" => $newVersion, "--db-port" => "random"]));
+        $this->assertEquals(0, $dbTester->execute(["action" => "create-start", "--db-name" => $dbName, "--db-version" => $version, "--db-port" => "random"]));
 
         // Delete
         fwrite(STDERR, "Delete database $dbName" . PHP_EOL);
