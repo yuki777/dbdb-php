@@ -5,20 +5,19 @@ namespace DbDbPhp\Composer;
 use PHPUnit\Framework\TestCase;
 use Composer\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
-use DbDbPhp\Composer\Commands\Redis;
+use DbDbPhp\Composer\Commands\Mongodb;
 use DbDbPhp\Composer\Commands\DbDbList;
 use DbDbPhp\Composer\Commands\DbDbVersion;
 
-class RedisTest extends TestCase
+class Mongodb4410Test extends TestCase
 {
     public function testBasic()
     {
-        $type = 'redis';
-        $oldVersion = '6.0.16';
-        $newVersion = '6.2.6';
+        $type = 'mongodb';
+        $version = '4.4.10';
 
         $application = new Application();
-        $application->add(new Redis());
+        $application->add(new Mongodb());
         $application->add(new DbDbList());
         $application->add(new DbDbVersion());
         $application->setAutoExit(false);
@@ -36,14 +35,14 @@ class RedisTest extends TestCase
         $this->assertStringContainsString('"dbdb-php"', $versionTester->getDisplay());
         $this->assertStringContainsString('"dbdb"', $versionTester->getDisplay());
 
+        // Create
+        fwrite(STDERR, "Create database $dbName" . PHP_EOL);
+        $this->assertEquals(0, $dbTester->execute(["action" => "create", "--db-name" => $dbName, "--db-version" => $version, "--db-port" => "random"]));
+
         // List
         fwrite(STDERR, "Show databases" . PHP_EOL);
         $this->assertEquals(0, $listTester->execute([]));
-        $this->assertStringContainsString('[]', $listTester->getDisplay());
-
-        // Create
-        fwrite(STDERR, "Create database $dbName" . PHP_EOL);
-        $this->assertEquals(0, $dbTester->execute(["action" => "create", "--db-name" => $dbName, "--db-version" => $oldVersion, "--db-port" => "random"]));
+        $this->assertStringContainsString($dbName, $listTester->getDisplay());
 
         // Start
         fwrite(STDERR, "Start database $dbName" . PHP_EOL);
@@ -65,12 +64,22 @@ class RedisTest extends TestCase
         fwrite(STDERR, "Delete database $dbName" . PHP_EOL);
         $this->assertEquals(0, $dbTester->execute(["action" => "delete", "--db-name" => $dbName]));
 
+        // List
+        fwrite(STDERR, "Show databases" . PHP_EOL);
+        $this->assertEquals(0, $listTester->execute([]));
+        $this->assertStringNotContainsString($dbName, $listTester->getDisplay());
+
         // Create and start
         fwrite(STDERR, "Create and start database $dbName" . PHP_EOL);
-        $this->assertEquals(0, $dbTester->execute(["action" => "create-start", "--db-name" => $dbName, "--db-version" => $newVersion, "--db-port" => "random"]));
+        $this->assertEquals(0, $dbTester->execute(["action" => "create-start", "--db-name" => $dbName, "--db-version" => $version, "--db-port" => "random"]));
 
         // Delete
         fwrite(STDERR, "Delete database $dbName" . PHP_EOL);
         $this->assertEquals(0, $dbTester->execute(["action" => "delete", "--db-name" => $dbName]));
+
+        // List
+        fwrite(STDERR, "Show databases" . PHP_EOL);
+        $this->assertEquals(0, $listTester->execute([]));
+        $this->assertStringNotContainsString($dbName, $listTester->getDisplay());
     }
 }
