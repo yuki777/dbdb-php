@@ -1,11 +1,24 @@
 {
     "name": "yuki777/dbdb-php",
+    "description": "Database version manager for MySQL, PostgreSQL, MongoDB & Redis",
+    "keywords": [
+        "database",
+        "version",
+        "manager",
+        "MySQL",
+        "PostgreSQL",
+        "MongoDB",
+        "Redis",
+        "plugin",
+        "composer"
+    ],
     "type": "composer-plugin",
     "require": {
         "composer-plugin-api": "^2.0"
     },
     "require-dev": {
         "ext-pdo_mysql": "*",
+        "ext-redis": "*",
         "composer/composer": "^2.0",
         "phpunit/phpunit": "^10.0",
         "squizlabs/php_codesniffer": "^3.7"
