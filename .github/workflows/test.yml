@@ -9,11 +9,14 @@ jobs:
       matrix:
         os: [macos-latest, ubuntu-latest]
         test: [
-          tests/MongodbTest.php,
-          tests/MysqlTest.php,
-          tests/Postgresql12Test.php,
-          tests/Postgresql13Test.php,
-          tests/RedisTest.php
+          tests/Mongodb503Test.php,
+          tests/Mongodb4410Test.php,
+          tests/Mysql5731Test.php,
+          tests/Mysql8030Test.php,
+          tests/Postgresql124Test.php,
+          tests/Postgresql132Test.php,
+          tests/Redis626Test.php
+          tests/Redis6016Test.php
         ]
     steps:
       - uses: actions/checkout@v3
