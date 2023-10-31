@@ -33,7 +33,7 @@ class Mysql extends DbDbBase
 
         switch ($action) {
             case 'create':
-            case 'create-start':
+            case 'create-start-bar':
                 if (empty($name) || empty($version) || empty($port)) {
                     $output->writeln("<error>For the $action action, you must provide the db-name, db-version, and db-port options.</error>");
                     $output->writeln('e.g.');
@@ -44,7 +44,6 @@ class Mysql extends DbDbBase
                 return $this->action($action, $input, $output);
                 break;
             case 'delete':
-            case 'port':
             case 'restart':
             case 'start':
             case 'stop':
