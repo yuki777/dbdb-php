@@ -60,4 +60,4 @@ composer dbdb:list
   - 5.0.3
 
 ## Example
-- [Here is an example](https://github.com/yuki777/dbdb-php-laravel) of Laravel using a MySQL database without a MySQL container in CI (GitHub Actions).
+- [Here is an example](https://github.com/yuki777/dbdb-php-laravel/blob/main/.github/workflows/test.yaml) of Laravel using a MySQL database without a MySQL container in CI (GitHub Actions).
