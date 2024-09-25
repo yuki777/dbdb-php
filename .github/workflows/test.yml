@@ -19,6 +19,7 @@ jobs:
           tests/Redis6016Test.php,
           tests/Memcached1631Test.php
         ]
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
       - name: Set up PHP
