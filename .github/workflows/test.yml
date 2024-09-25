@@ -16,7 +16,8 @@ jobs:
           tests/Postgresql124Test.php,
           tests/Postgresql132Test.php,
           tests/Redis626Test.php,
-          tests/Redis6016Test.php
+          tests/Redis6016Test.php,
+          tests/Memcached1631Test.php
         ]
     steps:
       - uses: actions/checkout@v4

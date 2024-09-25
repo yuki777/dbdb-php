@@ -15,6 +15,7 @@ class CommandProvider implements CommandProviderCapability
             new Commands\Mysql(),
             new Commands\Postgresql(),
             new Commands\Redis(),
+            new Commands\Memcached(),
         ];
     }
 }
