@@ -22,7 +22,7 @@ cd dbdb
 
 ## MySQL
 
-### Manage MySQL Server on localhost
+### Commands for MySQL Server
 
 ```
 ./mysql/{create|start|stop|restart|port|status|connect|delete}.sh {name} {mysqlVersion} {port}
@@ -61,7 +61,7 @@ cd dbdb
 
 ## PostgreSQL
 
-### Manage PostgreSQL Server on localhost
+### Commands for PostgreSQL Server
 
 ```
 ./postgresql/{create|start|stop|restart|port|status|connect|delete}.sh {name} {postgresqlVersion} {port}
@@ -89,13 +89,13 @@ cd dbdb
 
 ## Redis
 
-### Manage Redis Server on localhost
+### Commands for Redis Server
 
 ```
 ./redis/{create|start|stop|restart|port|status|connect|delete}.sh {name} {redisVersion} {port}
 
 # e.g.
-./redis/create.sh  redis1 6.0.10 6379
+./redis/create.sh  redis1 6.2.14 6379
 ./redis/start.sh   redis1
 ./redis/stop.sh    redis1
 ./redis/restart.sh redis1
@@ -107,9 +107,10 @@ cd dbdb
 
 ### Supported Redis Versions
 
-- 5.0.14 (`make` causes an error on M1 Mac.)
 - 6.0.16
-- 6.2.6
+- 6.2.14
+- 7.0.15
+- 7.2.5
 
 </div></details>
 
@@ -117,7 +118,7 @@ cd dbdb
 
 ## MongoDB
 
-### Manage MongoDB Server on localhost
+### Commands for MongoDB Server
 
 ```
 ./mongodb/{create|start|stop|restart|port|status|connect|delete}.sh {name} {mongodbVersion} {port}
@@ -137,6 +138,32 @@ cd dbdb
 
 - 4.4.10
 - 5.0.3
+
+</div></details>
+
+<details><summary>Memcached</summary><div>
+
+## Memcached
+
+### Commands for Memcached Server
+
+```
+./memcached/{create|start|stop|restart|port|status|connect|delete}.sh {name} {memcachedVersion} {port}
+
+# e.g.
+./memcached/create.sh  memcached1 1.6.31 11211
+./memcached/start.sh   memcached1
+./memcached/stop.sh    memcached1
+./memcached/restart.sh memcached1
+./memcached/port.sh    memcached1
+./memcached/status.sh  memcached1
+./memcached/connect.sh memcached1
+./memcached/delete.sh  memcached1
+```
+
+### Supported Memcached Versions
+
+- 1.6.31
 
 </div></details>
 
