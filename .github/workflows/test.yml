@@ -21,21 +21,11 @@ jobs:
         ]
     steps:
       - uses: actions/checkout@v4
-      - name: Install PHP and Composer on macOS
-        if: matrix.os == 'macos-latest'
-        run: |
-          brew update
-          brew install php
-          brew install composer
-      - name: Install PHP and Composer on Ubuntu
-        if: matrix.os == 'ubuntu-latest'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y php
-          sudo apt-get install -y composer
-      - name: Composer install
-        run: |
-          composer install
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      - name: Install Composer dependencies
+        run: composer install
       - name: Run tests
-        run: |
-          ./vendor/bin/phpunit ${{ matrix.test }}
+        run: ./vendor/bin/phpunit ${{ matrix.test }}
