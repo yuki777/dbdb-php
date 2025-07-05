@@ -43,7 +43,7 @@ optName=$1
 optVersion=$2
 optPort=$(getOptPort $3)
 optFileName=mysql-${optVersion}-${os}
-optUser=_dbdb_mysql
+optUser=root
 optSocket=/tmp/dbdb_mysql_$optPort.sock
 installDir=$(getInstallDir $(getType))
 dir=$installDir/versions/$optVersion
@@ -55,7 +55,7 @@ exitIfDuplicatedName $optName
 exitIfExistDir $dir/datadir/$optName
 exitIfRunningPort $optPort
 
-getUrlFileAs https://dbdb.shueisha-artsdigital.co.jp/mysql/$optFileName.tar.gz $optFileName.tar.gz
+getUrlFileAs https://dbdb.shueisha-artsdigital.co.jp/mysql/$optFileName.tar.gz $optFileName.tar.gz || getUrlFileAs https://dbdb.shueisha-artsdigital.co.jp/mysql/$optFileName.tar.xz $optFileName.tar.xz
 mkdir -p $dir/datadir/$optName
 extractFile $dir $optFileName
 

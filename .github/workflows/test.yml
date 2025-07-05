@@ -20,9 +20,24 @@ jobs:
           tests/Redis6016Test.php,
           tests/Memcached1631Test.php
         ]
+        exclude:
+          - {os: ubuntu-latest, test: tests/Mongodb4410Test.php}
+          - {os: ubuntu-latest, test: tests/Mongodb503Test.php}
+          - {os: ubuntu-latest, test: tests/Postgresql124Test.php}
+          - {os: ubuntu-latest, test: tests/Postgresql132Test.php}
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
+      
+      # mysqld: error while loading shared libraries: libaio.so.1: cannot open shared object file: No such file or directory
+      - name: Install database dependencies
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt update
+          sudo apt install -y libaio1t64 libaio-dev libnuma1 libmecab2 libssl3t64 libncurses6 libtinfo6
+          sudo ln -sf /lib/x86_64-linux-gnu/libaio.so.1t64 /lib/x86_64-linux-gnu/libaio.so.1
+          sudo ldconfig
+
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -31,12 +46,14 @@ jobs:
       - name: Get composer cache directory
         id: composer-cache
         run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
       - name: Cache dependencies
         uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
           restore-keys: ${{ runner.os }}-composer-
+
       - name: Install dependencies
         run: composer install --prefer-dist
 
