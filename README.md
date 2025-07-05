@@ -2,7 +2,7 @@
 
 dbdb-php is a plugin for composer that allows you to manage databases with [dbdb](https://github.com/yuki777/dbdb).
 
-## Install
+## Install locally
 
 ```bash
 # Allow plugin
@@ -11,6 +11,16 @@ composer config allow-plugins.yuki777/dbdb-php true
 # Install
 # Don't forget "--dev".  Databases started by "dbdb-php" are not suitable for production.
 composer require --dev yuki777/dbdb-php
+```
+## Install globally
+
+```bash
+# Allow plugin
+composer global config allow-plugins.yuki777/dbdb-php true
+
+# Install
+# Don't forget "--dev".  Databases started by "dbdb-php" are not suitable for production.
+composer global require --dev yuki777/dbdb-php
 ```
 
 ## Usage
