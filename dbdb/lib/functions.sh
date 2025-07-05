@@ -62,26 +62,36 @@ exitIfNotRunningPort() {
 }
 
 getUrlFileAs() {
-  if [ ! -e $2 ]; then
+  if [ ! -e "$2" ]; then
     echo "Downloading... $1" 1>&2
-    if wget $1 -O $2 2>/dev/null || curl $1 -o $2; then
-      :
+    local temp_file="$2.tmp.$$"
+    if wget --server-response "$1" -O "$temp_file" 2>/dev/null || curl --fail --silent "$1" -o "$temp_file"; then
+      mv "$temp_file" "$2"
+      return 0
     else
-      rm -f $2
-      echo "Not found $2" 1>&2
-      exit 1
+      rm -f "$temp_file"
+      echo "Download failed or HTTP error for $1" 1>&2
+      return 1
     fi
   fi
+  return 0
 }
 
 extractFile() {
-  if [ ! -d $1/basedir ]; then
+  if [ ! -d "$1/basedir" ]; then
     echo "Extracting..." 1>&2
-    mkdir -p $1/basedir
-    cd $1/basedir
-    cp $1/$2.tar.gz .
-    tar zxf $2.tar.gz --strip-components 1
-    rm -f $2.tar.gz
+    mkdir -p "$1/basedir"
+    cd "$1/basedir"
+
+    if [ -f "$1/$2.tar.gz" ]; then
+      cp "$1/$2.tar.gz" .
+      tar -xf "$2.tar.gz" --strip-components 1
+      rm -f "$2.tar.gz"
+    elif [ -f "$1/$2.tar.xz" ]; then
+      cp "$1/$2.tar.xz" .
+      tar -xf "$2.tar.xz" --strip-components 1
+      rm -f "$2.tar.xz"
+    fi
   fi
 }
 
@@ -129,7 +139,7 @@ getCommands() {
 
 getRandomPort() {
   while true; do
-    randomPort=$(shuf -i "49152-65535" -n 1 || jot -r 1 49152 65535)
+    randomPort=$(shuf -i "49152-65535" -n 1 2>/dev/null || jot -r 1 49152 65535)
     netstat -a -n | grep ".$randomPort" | grep "LISTEN" 1>/dev/null 2>&1 || break
   done
   echo $randomPort

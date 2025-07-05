@@ -11,7 +11,7 @@
                 ||     ||
 ```
 
-## Install
+## インストール
 
 ```
 git clone https://github.com/pj8/dbdb.git
@@ -22,18 +22,15 @@ cd dbdb
 
 ## MySQL
 
-### Commands for MySQL Server
+### MySQL Server関連コマンド
 
 ```
 ./mysql/{create|start|stop|restart|port|status|connect|delete}.sh {name} {mysqlVersion} {port}
 
-# e.g. Create MySQL server.
-./mysql/create.sh mysql1 5.7.31 3306
+# 例: MySQL serverを作成する
+./mysql/create.sh mysql1 8.0.41 3306
 
-# e.g. Create another one.
-./mysql/create.sh mysql2 8.0.30 13306
-
-# e.g.
+# そのほかの例
 ./mysql/start.sh   mysql1
 ./mysql/stop.sh    mysql1
 ./mysql/restart.sh mysql1
@@ -42,18 +39,27 @@ cd dbdb
 ./mysql/connect.sh mysql1
 ./mysql/delete.sh  mysql1
 
-# e.g. Create with random port.
-./mysql/create.sh mysql1 5.7.31 random
+# 例: 別のサーバーを作成する
+./mysql/create.sh mysql2 9.2.0 13306
 
-# e.g. Try create, then start server.
-./mysql/create-start.sh mysql1 5.7.31 3306
+# 例: ランダムなポートで作成する
+./mysql/create.sh mysql3 8.0.41 random
+
+# 例: なければサーバーを作成してから、サーバーをスタートする
+./mysql/create-start.sh mysql4 9.2.0 23306
 ```
 
-### Supported MySQL Versions
+### サポートしているMySQL Versions
 
-- 5.7.31
-- 8.0.23
-- 8.0.30
+- x86_64
+  - 5.7.31 (x86_64)
+  - 8.0.23 (x86_64)
+  - 8.0.30 (x86_64)
+- arm64
+  - 8.0.28 (arm64)
+  - 8.0.41 (arm64)
+  - 8.4.4 (arm64)
+  - 9.2.0 (arm64)
 
 </div></details>
 
@@ -169,26 +175,26 @@ cd dbdb
 
 ## Tips
 
-### Create with random port.
+### ランダムなポートで作成する
 
 ```
 /path/to/dbdb/mysql/create.sh mysql5-foo 5.7.31 random
 ```
 
-### Show port number.
+### ポートナンバーを表示する
 
 ```
 /path/to/dbdb/mysql/port.sh mysql5-foo
 ```
 
-### Start by creating the database server if it does not exist.
+### なければサーバーを作成してから、サーバーをスタートする
 
 ```
 # Create and start
 /path/to/dbdb/mysql/create-start.sh mysql5-foo 5.7.31 3306
 ```
 
-### How do I show all the database servers?
+### すべてのデータベースを表示するには？
 
 - You can use `dbdb.sh` for that.
 
@@ -196,7 +202,7 @@ cd dbdb
 ./dbdb.sh
 ```
 
-### How to start a database server when my server booted?
+### マシン起動時に自動でサーバを起動するには？
 
 - [`crontab -e` with @reboot](https://man7.org/linux/man-pages/man5/crontab.5.html#EXTENSIONS)
 
