@@ -10,6 +10,9 @@
                 ||----w |
                 ||     ||
 ```
+## Dependencies
+- `nc`
+- `wget` or `curl`
 
 ## インストール
 
@@ -73,7 +76,7 @@ cd dbdb
 ./postgresql/{create|start|stop|restart|port|status|connect|delete}.sh {name} {postgresqlVersion} {port}
 
 # e.g.
-./postgresql/create.sh  pg1 12.4 5432
+./postgresql/create.sh  pg1 12.6 5432
 ./postgresql/start.sh   pg1
 ./postgresql/stop.sh    pg1
 ./postgresql/restart.sh pg1
@@ -85,7 +88,6 @@ cd dbdb
 
 ### Supported PostgreSQL Versions
 
-- 12.4
 - 12.6
 - 13.2
 
@@ -113,9 +115,7 @@ cd dbdb
 
 ### Supported Redis Versions
 
-- 6.0.16
 - 6.2.14
-- 7.0.15
 - 7.2.5
 
 </div></details>
@@ -130,7 +130,7 @@ cd dbdb
 ./mongodb/{create|start|stop|restart|port|status|connect|delete}.sh {name} {mongodbVersion} {port}
 
 # e.g.
-./mongodb/create.sh  mongo1 4.4.3 27017
+./mongodb/create.sh  mongo1 8.0.11 27017
 ./mongodb/start.sh   mongo1
 ./mongodb/stop.sh    mongo1
 ./mongodb/restart.sh mongo1
@@ -142,8 +142,8 @@ cd dbdb
 
 ### Supported MongoDB Versions
 
-- 4.4.10
-- 5.0.3
+- 6.0.24
+- 7.0.21
 
 </div></details>
 
